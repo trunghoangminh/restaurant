@@ -25,36 +25,77 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table( name = CustomerOrder.TABLE_NAME )
+@Table(name = CustomerOrder.TABLE_NAME)
 public class CustomerOrder implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    public static final String TABLE_NAME = "CustomerOrder";
-    private static final String ID = "Id";
-    private static final String ORDERED_TIME = "OrderedTime";
-    private static final String QUANTITY = "Quantity";
+	public static final String TABLE_NAME = "CustomerOrder";
+	private static final String ID = "Id";
+	private static final String ORDERED_TIME = "OrderedTime";
+	private static final String QUANTITY = "Quantity";
 
-    private static final String GENERATOR_NATIVE = "native";
+	private static final String GENERATOR_NATIVE = "native";
 
-    @Id
-    @GeneratedValue( strategy = GenerationType.AUTO, generator = GENERATOR_NATIVE )
-    @GenericGenerator( name = GENERATOR_NATIVE, strategy = GENERATOR_NATIVE )
-    @Column( name = ID )
-    private long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = GENERATOR_NATIVE)
+	@GenericGenerator(name = GENERATOR_NATIVE, strategy = GENERATOR_NATIVE)
+	@Column(name = ID)
+	private long id;
 
-    @ManyToOne( cascade = CascadeType.ALL, fetch = FetchType.EAGER )
-    @JoinColumn( name = "FKBill" )
-    private Bill bill;
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "FKBill")
+	private Bill bill;
 
-    @OneToOne( cascade = CascadeType.ALL, fetch = FetchType.EAGER )
-    @JoinColumn( name = "FKMenu" )
-    private Menu menu;
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "FKMenu")
+	private Menu menu;
 
-    @Column( name = ORDERED_TIME )
-    private Date orderedTime;
+	@Column(name = ORDERED_TIME)
+	private Date orderedTime;
 
-    @Column( name = QUANTITY )
-    private int quantity;
+	@Column(name = QUANTITY)
+	private int quantity;
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + ((menu == null) ? 0 : menu.hashCode());
+		result = prime * result + ((orderedTime == null) ? 0 : orderedTime.hashCode());
+		result = prime * result + quantity;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null) {
+			return false;
+		}
+		if (obj instanceof CustomerOrder) {
+			CustomerOrder that = (CustomerOrder) obj;
+			return this.id == that.id && this.menu.equals(that.menu) && this.orderedTime.equals(that.orderedTime)
+					&& this.quantity == that.quantity;
+		}
+		return false;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("CustomerOrder [id=");
+		builder.append(id);
+		if (menu != null) {
+			builder.append(", menu=");
+			builder.append(menu);
+		}
+		builder.append(", orderedTime=");
+		builder.append(orderedTime);
+		builder.append(", quantity=");
+		builder.append(quantity);
+		builder.append("]");
+		return builder.toString();
+	}
 
 }

@@ -16,6 +16,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.fasterxml.jackson.databind.deser.impl.ExternalTypeHandler.Builder;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -29,26 +31,63 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table( name = Bill.TABLE_NAME )
+@Table(name = Bill.TABLE_NAME)
 public class Bill implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    public static final String TABLE_NAME = "Bill";
-    private static final String ID = "Id";
-    private static final String DATE = "Date";
+	public static final String TABLE_NAME = "Bill";
+	private static final String ID = "Id";
+	private static final String DATE = "Date";
 
-    private static final String GENERATOR_NATIVE = "native";
+	private static final String GENERATOR_NATIVE = "native";
 
-    @Id
-    @GeneratedValue( strategy = GenerationType.AUTO, generator = GENERATOR_NATIVE )
-    @GenericGenerator( name = GENERATOR_NATIVE, strategy = GENERATOR_NATIVE )
-    @Column( name = ID )
-    private long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = GENERATOR_NATIVE)
+	@GenericGenerator(name = GENERATOR_NATIVE, strategy = GENERATOR_NATIVE)
+	@Column(name = ID)
+	private long id;
 
-    @Column( name = DATE )
-    private Date date;
+	@Column(name = DATE)
+	private Date date;
 
-    @OneToMany( mappedBy = "bill", cascade = CascadeType.ALL, fetch = FetchType.EAGER )
-    Set<CustomerOrder> customerOrders;
+	@OneToMany(mappedBy = "bill", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	Set<CustomerOrder> customerOrders;
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((customerOrders == null) ? 0 : customerOrders.hashCode());
+		result = prime * result + ((date == null) ? 0 : date.hashCode());
+		result = prime * result + (int) (id ^ (id >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object other) {
+		if (other == null) {
+			return false;
+		}
+		if (other instanceof Bill) {
+			Bill that = (Bill) other;
+			return this.id == that.id && this.date.equals(that.date) && this.customerOrders.equals(that.customerOrders);
+		}
+		return false;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Bill [id=");
+		builder.append(id);
+		builder.append(", date=");
+		builder.append(date);
+		builder.append(", custommerOders,");
+		if (customerOrders != null) {
+			builder.append(customerOrders);
+		}
+		builder.append("]");
+		return builder.toString();
+	}
 }

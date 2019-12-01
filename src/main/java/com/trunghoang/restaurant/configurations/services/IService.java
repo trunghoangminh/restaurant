@@ -26,42 +26,42 @@ import java.util.List;
  */
 public interface IService<E, T, K> {
 
-    /**
-     * Get all object {@link E} in database
-     * 
-     * @return
-     */
-    public List<E> findAll();
+	/**
+	 * Get all object {@link E} in database
+	 * 
+	 * @return
+	 */
+	public List<E> findAll();
 
-    /**
-     * Find object {@link E} in database base on [k] id
-     * 
-     * @param k
-     * @return
-     */
-    public E findById( K k );
+	/**
+	 * Find object {@link E} in database base on [k] id
+	 * 
+	 * @param k
+	 * @return
+	 */
+	public E findById(K k);
 
-    /**
-     * Insert object {@link E} into database
-     * 
-     * @param e
-     * @return
-     */
-    public void add( E e );
+	/**
+	 * Insert object {@link E} into database
+	 * 
+	 * @param e
+	 * @return
+	 */
+	public void add(E e);
 
-    /**
-     * Edit some info of object {@link E} in database
-     * 
-     * @param e
-     * @return
-     */
-    public void update( E e );
+	/**
+	 * Edit some info of object {@link E} in database
+	 * 
+	 * @param e
+	 * @return
+	 */
+	public void update(E e);
 
-    /**
-     * Remove object {@link E} from database
-     * 
-     * @param e
-     * @return
-     */
-    public void delete( E e );
+	/**
+	 * Remove object {@link E} from database
+	 * 
+	 * @param e
+	 * @return
+	 */
+	public void delete(E e);
 }

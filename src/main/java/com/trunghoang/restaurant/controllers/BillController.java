@@ -30,52 +30,52 @@ import com.trunghoang.restaurant.repositories.BillRepository;
 @RestController
 public class BillController {
 
-    private Logger log = LoggerFactory.getLogger( BillController.class );
+	private Logger log = LoggerFactory.getLogger(BillController.class);
 
-    @Autowired
-    private BillServiceImpl billServiceImpl;
+	@Autowired
+	private BillServiceImpl billServiceImpl;
 
-    @Autowired
-    private BillRepository billRepository;
+	@Autowired
+	private BillRepository billRepository;
 
-    @GetMapping( value = { "/bill" } )
-    public ResponseEntity<List<BillDTO>> getAll() {
-	List<BillDTO> billDTOs = billServiceImpl.findAll();
-	log.info( billDTOs.toString() );
-	return new ResponseEntity<>( billDTOs, HttpStatus.OK );
-    }
+	@GetMapping(value = { "/bill" })
+	public ResponseEntity<List<BillDTO>> getAll() {
+		List<BillDTO> billDTOs = billServiceImpl.findAll();
+		log.info(billDTOs.toString());
+		return new ResponseEntity<>(billDTOs, HttpStatus.OK);
+	}
 
-    @GetMapping( value = { "/bill/{id}" } )
-    public ResponseEntity<BillDTO> findOne( @PathVariable long id ) {
-	BillDTO billDTO = billServiceImpl.findById( id );
-	return new ResponseEntity<>( billDTO, HttpStatus.OK );
-    }
+	@GetMapping(value = { "/bill/{id}" })
+	public ResponseEntity<BillDTO> findOne(@PathVariable long id) {
+		BillDTO billDTO = billServiceImpl.findById(id);
+		return new ResponseEntity<>(billDTO, HttpStatus.OK);
+	}
 
-    @GetMapping( value = { "/abc" } )
-    public ResponseEntity<BillDTO> findOne() {
+	@GetMapping(value = { "/abc" })
+	public ResponseEntity<BillDTO> findOne() {
 
-	Menu menu = new Menu();
-	menu.setName( "ABC" );
-	menu.setImageURL( "ABC>PNG" );
-	menu.setPrice( new BigDecimal( 10 ) );
-	menu.setDescription( "ABCABC" );
-	menu.setAdditionalDetails( "123,456,789" );
+		Menu menu = new Menu();
+		menu.setName("ABC");
+		menu.setImageURL("ABC>PNG");
+		menu.setPrice(new BigDecimal(10));
+		menu.setDescription("ABCABC");
+		menu.setAdditionalDetails("123,456,789");
 
-	Bill bill = new Bill();
-	bill.setDate( new Date( System.currentTimeMillis() ) );
+		Bill bill = new Bill();
+		bill.setDate(new Date(System.currentTimeMillis()));
 
-	CustomerOrder customerOrder = new CustomerOrder();
-	customerOrder.setQuantity( 3 );
-	customerOrder.setOrderedTime( new Date( System.currentTimeMillis() ) );
-	customerOrder.setBill( bill );
+		CustomerOrder customerOrder = new CustomerOrder();
+		customerOrder.setQuantity(3);
+		customerOrder.setOrderedTime(new Date(System.currentTimeMillis()));
+		customerOrder.setBill(bill);
 
-	customerOrder.setMenu( menu );
-	Set<CustomerOrder> customerOrders = new HashSet<>();
-	customerOrders.add( customerOrder );
-	bill.setCustomerOrders( customerOrders );
+		customerOrder.setMenu(menu);
+		Set<CustomerOrder> customerOrders = new HashSet<>();
+		customerOrders.add(customerOrder);
+		bill.setCustomerOrders(customerOrders);
 
-	billRepository.add( bill );
-	//billRepository.findAll();
-	return new ResponseEntity<>( HttpStatus.OK );
-    }
+		billRepository.add(bill);
+		// billRepository.findAll();
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
 }

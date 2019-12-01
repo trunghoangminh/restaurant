@@ -2,8 +2,8 @@ package com.trunghoang.restaurant.exceptions;
 
 /**
  * 
- * This class represent for exception of application. If the new exception
- * is created then should be extend this class
+ * This class represent for exception of application. If the new exception is
+ * created then should be extend this class
  *
  */
 public class ApplicationException extends Exception {

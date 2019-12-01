@@ -7,5 +7,5 @@ package com.trunghoang.restaurant.constants;
  */
 public class RepositoryConstants {
 
-    public static final String PERSISTENCE_UNIT = "businesspersistence";
+	public static final String PERSISTENCE_UNIT = "businesspersistence";
 }

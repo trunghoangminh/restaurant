@@ -9,13 +9,13 @@ import ma.glasnost.orika.MapperFactory;
  */
 public interface Mapper {
 
-    public String SEPARATOR = ",";
+	public String SEPARATOR = ",";
 
-    /**
-     * Register mapper
-     * 
-     * @param mapperFactory
-     */
-    public void registerClassMap( MapperFactory mapperFactory );
+	/**
+	 * Register mapper
+	 * 
+	 * @param mapperFactory
+	 */
+	public void registerClassMap(MapperFactory mapperFactory);
 
 }
