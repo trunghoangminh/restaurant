@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.trunghoang.restaurant.configurations.services.impl.BillServiceImpl;
 import com.trunghoang.restaurant.domains.Bill;
 import com.trunghoang.restaurant.domains.CustomerOrder;
 import com.trunghoang.restaurant.domains.Menu;
 import com.trunghoang.restaurant.domains.dtos.BillDTO;
 import com.trunghoang.restaurant.repositories.BillRepository;
+import com.trunghoang.restaurant.services.impl.BillServiceImpl;
 
 /**
  * 
@@ -38,14 +38,14 @@ public class BillController {
 	@Autowired
 	private BillRepository billRepository;
 
-	@GetMapping(value = { "/bill" })
+	@GetMapping(value = { "/v1/bill" })
 	public ResponseEntity<List<BillDTO>> getAll() {
 		List<BillDTO> billDTOs = billServiceImpl.findAll();
 		log.info(billDTOs.toString());
 		return new ResponseEntity<>(billDTOs, HttpStatus.OK);
 	}
 
-	@GetMapping(value = { "/bill/{id}" })
+	@GetMapping(value = { "/v1/bill/{id}" })
 	public ResponseEntity<BillDTO> findOne(@PathVariable long id) {
 		BillDTO billDTO = billServiceImpl.findById(id);
 		return new ResponseEntity<>(billDTO, HttpStatus.OK);

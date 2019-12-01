@@ -1,4 +1,4 @@
-package com.trunghoang.restaurant.configurations.services;
+package com.trunghoang.restaurant.services;
 
 import java.util.List;
 

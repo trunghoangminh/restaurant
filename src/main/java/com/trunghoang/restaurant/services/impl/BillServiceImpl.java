@@ -1,16 +1,15 @@
-package com.trunghoang.restaurant.configurations.services.impl;
+package com.trunghoang.restaurant.services.impl;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.trunghoang.restaurant.configurations.services.BaseService;
-import com.trunghoang.restaurant.configurations.services.IService;
 import com.trunghoang.restaurant.domains.Bill;
 import com.trunghoang.restaurant.domains.dtos.BillDTO;
 import com.trunghoang.restaurant.domains.mapper.DefaultClassMapper;
 import com.trunghoang.restaurant.repositories.BillRepository;
+import com.trunghoang.restaurant.services.IService;
 
 /**
  * 
@@ -18,7 +17,7 @@ import com.trunghoang.restaurant.repositories.BillRepository;
  *
  */
 @Service
-public class BillServiceImpl extends BaseService implements IService<BillDTO, Boolean, Long> {
+public class BillServiceImpl implements IService<BillDTO, Boolean, Long> {
 
 	@Autowired
 	private BillRepository billRepository;
