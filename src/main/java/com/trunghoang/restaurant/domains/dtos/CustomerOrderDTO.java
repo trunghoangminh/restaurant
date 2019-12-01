@@ -2,8 +2,6 @@ package com.trunghoang.restaurant.domains.dtos;
 
 import java.sql.Date;
 
-import com.trunghoang.restaurant.domains.CustomerOrder;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

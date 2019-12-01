@@ -3,8 +3,6 @@ package com.trunghoang.restaurant.domains.dtos;
 import java.math.BigDecimal;
 import java.util.List;
 
-import com.trunghoang.restaurant.domains.Menu;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

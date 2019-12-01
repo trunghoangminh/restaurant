@@ -3,8 +3,6 @@ package com.trunghoang.restaurant.domains.dtos;
 import java.sql.Date;
 import java.util.Set;
 
-import com.trunghoang.restaurant.domains.Bill;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
