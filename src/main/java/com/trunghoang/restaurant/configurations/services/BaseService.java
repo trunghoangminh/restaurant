@@ -1,6 +1,5 @@
 package com.trunghoang.restaurant.configurations.services;
 
-import org.modelmapper.ModelMapper;
 
 /**
  * 
@@ -9,5 +8,4 @@ import org.modelmapper.ModelMapper;
  */
 public abstract class BaseService {
 
-	protected ModelMapper modelMapper = new ModelMapper();
 }

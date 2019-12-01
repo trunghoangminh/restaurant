@@ -24,7 +24,6 @@
 		<mysql.version>5.1.45</mysql.version>
 		<hibernate.core.version>5.2.8.Final</hibernate.core.version>
 		<lambok.verion>1.16.20</lambok.verion>
-		<modelmapper>2.3.2</modelmapper>
 		<orika.version>1.4.6</orika.version>
 	</properties>
 
@@ -102,12 +101,6 @@
 		</dependency>
 
 		<!-- Mapper -->
-		<dependency>
-			<groupId>org.modelmapper</groupId>
-			<artifactId>modelmapper</artifactId>
-			<version>${modelmapper}</version>
-		</dependency>
-
 		<dependency>
 			<groupId>ma.glasnost.orika</groupId>
 			<artifactId>orika-core</artifactId>
