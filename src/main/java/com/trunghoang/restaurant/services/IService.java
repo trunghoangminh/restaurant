@@ -2,66 +2,15 @@ package com.trunghoang.restaurant.services;
 
 import java.util.List;
 
-/**
- * 
- * <p>
- * This interface is common interface for service layer
- * </p>
- * <p>
- * All specific class of "service layer" must implement this interface
- * </p>
- * <p>
- * {@link E} is specific Object
- * </p>
- * <p>
- * {@link T} is return type. Example: boolean
- * </p>
- * <p>
- * {@link K} is basic data type. Example: int, String
- * </p>
- * 
- * @param <E>
- * @param <T>
- * @param <K>
- */
-public interface IService<E, T, K> {
+public interface IService<DTO> {
 
-	/**
-	 * Get all object {@link E} in database
-	 * 
-	 * @return
-	 */
-	public List<E> findAll();
+	public List<DTO> findAll();
 
-	/**
-	 * Find object {@link E} in database base on [k] id
-	 * 
-	 * @param k
-	 * @return
-	 */
-	public E findById(K k);
+	public DTO findById(long id);
 
-	/**
-	 * Insert object {@link E} into database
-	 * 
-	 * @param e
-	 * @return
-	 */
-	public void add(E e);
+	public void add(DTO dto);
 
-	/**
-	 * Edit some info of object {@link E} in database
-	 * 
-	 * @param e
-	 * @return
-	 */
-	public void update(E e);
+	public void update(DTO dto);
 
-	/**
-	 * Remove object {@link E} from database
-	 * 
-	 * @param e
-	 * @return
-	 */
-	public void delete(E e);
+	public void delete(DTO dto);
 }

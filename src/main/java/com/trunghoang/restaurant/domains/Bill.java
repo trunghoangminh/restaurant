@@ -1,7 +1,7 @@
 package com.trunghoang.restaurant.domains;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -15,8 +15,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
-
-import com.fasterxml.jackson.databind.deser.impl.ExternalTypeHandler.Builder;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,7 +30,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 @Table(name = Bill.TABLE_NAME)
-public class Bill implements Serializable {
+public class Bill implements Serializable, IdEntity {
 
 	private static final long serialVersionUID = 1L;
 
@@ -49,7 +47,7 @@ public class Bill implements Serializable {
 	private long id;
 
 	@Column(name = DATE)
-	private Date date;
+	private Timestamp date;
 
 	@OneToMany(mappedBy = "bill", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	Set<CustomerOrder> customerOrders;

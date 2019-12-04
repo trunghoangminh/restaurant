@@ -1,6 +1,6 @@
 package com.trunghoang.restaurant.domains.dtos;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.Set;
 
 import lombok.Getter;
@@ -10,11 +10,11 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class BillDTO {
+public class BillDTO implements IdDTO {
 
 	private long id;
 
-	private Date date;
+	private Timestamp date;
 
 	private Set<CustomerOrderDTO> customerOrders;
 

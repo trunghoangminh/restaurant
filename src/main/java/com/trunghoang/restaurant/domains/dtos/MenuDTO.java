@@ -10,7 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class MenuDTO {
+public class MenuDTO implements IdDTO {
 
 	private long id;
 

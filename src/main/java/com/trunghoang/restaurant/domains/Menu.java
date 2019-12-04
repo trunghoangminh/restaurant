@@ -26,7 +26,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 @Table(name = Menu.TABLE_NAME)
-public class Menu implements Serializable {
+public class Menu implements Serializable, IdEntity {
 
 	private static final long serialVersionUID = 1L;
 

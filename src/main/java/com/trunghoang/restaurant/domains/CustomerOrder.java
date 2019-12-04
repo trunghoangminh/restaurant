@@ -26,7 +26,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 @Table(name = CustomerOrder.TABLE_NAME)
-public class CustomerOrder implements Serializable {
+public class CustomerOrder implements Serializable, IdEntity {
 
 	private static final long serialVersionUID = 1L;
 

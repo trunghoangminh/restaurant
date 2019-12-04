@@ -18,12 +18,11 @@
 		context -->
 	<!-- <context:annotation-config /> -->
 
-	<tx:annotation-driven transaction-manager="transactionManager" />
-
-
 	<!-- Scan package for creating beans -->
 	<context:component-scan base-package="com.trunghoang.restaurant" />
 
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
