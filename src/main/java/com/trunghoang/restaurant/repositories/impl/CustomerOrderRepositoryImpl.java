@@ -1,7 +1,10 @@
 package com.trunghoang.restaurant.repositories.impl;
 
+import org.springframework.stereotype.Repository;
+
 import com.trunghoang.restaurant.domains.CustomerOrder;
 
+@Repository
 public class CustomerOrderRepositoryImpl extends DefaultRepository<CustomerOrder> {
 
 	public CustomerOrderRepositoryImpl() {
