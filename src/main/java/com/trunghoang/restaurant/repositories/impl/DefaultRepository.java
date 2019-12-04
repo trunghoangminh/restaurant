@@ -9,6 +9,8 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import com.trunghoang.restaurant.domains.IdEntity;
 import com.trunghoang.restaurant.repositories.IRepository;
 
@@ -49,21 +51,24 @@ public abstract class DefaultRepository<ENTITY extends IdEntity> implements IRep
 	}
 
 	@Override
+	@Transactional
 	public void add(ENTITY entity) {
 		em.persist(entity);
 	}
 
 	@Override
+	@Transactional
 	public void update(ENTITY entity) {
 		ENTITY existedEntity = findById(entity.getId());
 		updateInfo(existedEntity, entity);
 	}
 
-	public abstract void updateInfo(ENTITY existedEntity, ENTITY entity);
-
 	@Override
+	@Transactional
 	public void delete(ENTITY entity) {
 		em.remove(entity);
 	}
+
+	public abstract void updateInfo(ENTITY existedEntity, ENTITY entity);
 
 }

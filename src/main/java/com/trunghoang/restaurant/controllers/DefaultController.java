@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.trunghoang.restaurant.services.IService;
@@ -42,7 +43,7 @@ public abstract class DefaultController<DTO, SERVICE extends IService<DTO>> {
 
 	@PostMapping(value = "/")
 	@ResponseBody
-	public ResponseEntity<DTO> add(@PathVariable DTO dto) {
+	public ResponseEntity<DTO> add(@RequestBody DTO dto) {
 		getService().add(dto);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
@@ -58,6 +59,9 @@ public abstract class DefaultController<DTO, SERVICE extends IService<DTO>> {
 	@ResponseBody
 	public ResponseEntity<DTO> delete(@PathVariable long id) {
 		return new ResponseEntity<>(getService().findById(id), HttpStatus.OK);
+	}
+	public static void main(String[] args) {
+		System.out.println(System.currentTimeMillis());
 	}
 
 }
