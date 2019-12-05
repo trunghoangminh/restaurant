@@ -2,6 +2,8 @@ package com.trunghoang.restaurant.controllers.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,5 +22,10 @@ public class BillController extends DefaultController<BillDTO, IService<BillDTO>
 	@Override
 	public IService<BillDTO> getService() {
 		return billService;
+	}
+
+	@Override
+	public ResponseEntity<Void> delete(@PathVariable long id) {
+		throw new UnsupportedOperationException("Unsupported delete function");
 	}
 }

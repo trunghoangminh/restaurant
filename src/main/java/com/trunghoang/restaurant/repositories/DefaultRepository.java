@@ -9,7 +9,9 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
+import com.trunghoang.restaurant.constants.ErrorMessage;
 import com.trunghoang.restaurant.domains.IdEntity;
+import com.trunghoang.restaurant.exceptions.ApplicationException;
 
 /**
  * 
@@ -60,7 +62,11 @@ public abstract class DefaultRepository<ENTITY extends IdEntity> implements IRep
 	}
 
 	@Override
-	public void delete(ENTITY entity) {
+	public void delete(long id) throws ApplicationException {
+		ENTITY entity = findById(id);
+		if (entity == null) {
+			throw new ApplicationException(ErrorMessage.ENTITY_NOT_FOUND.toString());
+		}
 		em.remove(entity);
 	}
 

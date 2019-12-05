@@ -21,5 +21,4 @@ public class MenuController extends DefaultController<MenuDTO, IService<MenuDTO>
 	public IService<MenuDTO> getService() {
 		return menuService;
 	}
-
 }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.trunghoang.restaurant.exceptions.ApplicationException;
 import com.trunghoang.restaurant.services.IService;
 
 /**
@@ -23,7 +24,7 @@ import com.trunghoang.restaurant.services.IService;
  * @param <DTO>
  * @param <SERVICE>
  */
-public abstract class DefaultController<DTO, SERVICE extends IService<DTO>> {
+public abstract class DefaultController<DTO, SERVICE extends IService<DTO>> implements IController<DTO> {
 
 	private Logger log = LoggerFactory.getLogger(DefaultController.class);
 
@@ -31,33 +32,39 @@ public abstract class DefaultController<DTO, SERVICE extends IService<DTO>> {
 
 	@GetMapping(value = "/")
 	@ResponseBody
+	@Override
 	public ResponseEntity<List<DTO>> getAll() {
 		return new ResponseEntity<>(getService().findAll(), HttpStatus.OK);
 	}
 
 	@GetMapping(value = "/{id}")
 	@ResponseBody
+	@Override
 	public ResponseEntity<DTO> findById(@PathVariable long id) {
 		return new ResponseEntity<>(getService().findById(id), HttpStatus.OK);
 	}
 
 	@PostMapping(value = "/")
 	@ResponseBody
-	public ResponseEntity<DTO> add(@RequestBody DTO dto) {
+	@Override
+	public ResponseEntity<Void> add(@RequestBody DTO dto) {
 		getService().add(dto);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 	@PutMapping(value = "/")
 	@ResponseBody
-	public ResponseEntity<DTO> update(@RequestBody DTO dto) {
+	@Override
+	public ResponseEntity<Void> update(@RequestBody DTO dto) {
 		getService().update(dto);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 	@DeleteMapping(value = "/{id}")
 	@ResponseBody
-	public ResponseEntity<DTO> delete(@PathVariable long id) {
-		return new ResponseEntity<>(getService().findById(id), HttpStatus.OK);
+	@Override
+	public ResponseEntity<Void> delete(@PathVariable long id) throws ApplicationException {
+		getService().delete(id);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 }

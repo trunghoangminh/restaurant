@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import com.trunghoang.restaurant.exceptions.ApplicationException;
 import com.trunghoang.restaurant.repositories.IRepository;
 
 /**
@@ -40,8 +41,8 @@ public abstract class DefaultService<DTO, ENTITY, REPOSITORY extends IRepository
 
 	@Override
 	@Transactional
-	public void delete(DTO dto) {
-		getRepository().delete(convertToEntity(dto));
+	public void delete(long id) throws ApplicationException {
+		getRepository().delete(id);
 	}
 
 	public abstract REPOSITORY getRepository();

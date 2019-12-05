@@ -2,6 +2,8 @@ package com.trunghoang.restaurant.repositories;
 
 import java.util.List;
 
+import com.trunghoang.restaurant.exceptions.ApplicationException;
+
 /**
  * 
  * Repository interface
@@ -18,6 +20,6 @@ public interface IRepository<ENTITY> {
 
 	public void update(ENTITY entity);
 
-	public void delete(ENTITY entity);
+	public void delete(long id) throws ApplicationException;
 
 }
