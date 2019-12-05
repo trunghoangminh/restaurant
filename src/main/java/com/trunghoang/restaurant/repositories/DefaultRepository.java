@@ -25,7 +25,7 @@ public abstract class DefaultRepository<ENTITY extends IdEntity> implements IRep
 	private Class<ENTITY> clazz;
 
 	@PersistenceContext(unitName = "restaurantpersistence")
-	private EntityManager em;
+	protected EntityManager em;
 
 	/**
 	 * 

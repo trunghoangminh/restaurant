@@ -9,8 +9,9 @@ import com.trunghoang.restaurant.domains.Menu;
 import com.trunghoang.restaurant.domains.dtos.MenuDTO;
 import com.trunghoang.restaurant.domains.mapper.DefaultClassMapper;
 import com.trunghoang.restaurant.repositories.IRepository;
-import com.trunghoang.restaurant.repositories.impl.MenuRepositoryImpl;
+import com.trunghoang.restaurant.repositories.MenuRepository;
 import com.trunghoang.restaurant.services.DefaultService;
+import com.trunghoang.restaurant.services.MenuService;
 
 /**
  * 
@@ -18,10 +19,10 @@ import com.trunghoang.restaurant.services.DefaultService;
  *
  */
 @Service
-public class MenuServiceImpl extends DefaultService<MenuDTO, Menu, IRepository<Menu>> {
+public class MenuServiceImpl extends DefaultService<MenuDTO, Menu, IRepository<Menu>> implements MenuService {
 
 	@Autowired
-	private MenuRepositoryImpl menuRepository;
+	private MenuRepository menuRepository;
 
 	@Autowired
 	private DefaultClassMapper defaultClassMapper;
@@ -44,6 +45,11 @@ public class MenuServiceImpl extends DefaultService<MenuDTO, Menu, IRepository<M
 	@Override
 	public List<MenuDTO> convertToDTOs(List<Menu> entities) {
 		return defaultClassMapper.convertToList(entities, MenuDTO.class);
+	}
+
+	public List<MenuDTO> search(String title, String description, String additionalDetails) {
+		return defaultClassMapper.convertToList(menuRepository.search(title, description, additionalDetails),
+				MenuDTO.class);
 	}
 
 }

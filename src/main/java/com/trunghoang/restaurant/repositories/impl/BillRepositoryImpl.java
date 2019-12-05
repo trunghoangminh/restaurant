@@ -3,6 +3,7 @@ package com.trunghoang.restaurant.repositories.impl;
 import org.springframework.stereotype.Repository;
 
 import com.trunghoang.restaurant.domains.Bill;
+import com.trunghoang.restaurant.repositories.BillRepository;
 import com.trunghoang.restaurant.repositories.DefaultRepository;
 
 /**
@@ -11,7 +12,7 @@ import com.trunghoang.restaurant.repositories.DefaultRepository;
  * Bill repository implementation
  */
 @Repository
-public class BillRepositoryImpl extends DefaultRepository<Bill> {
+public class BillRepositoryImpl extends DefaultRepository<Bill> implements BillRepository {
 
 	public BillRepositoryImpl() {
 		super(Bill.class);

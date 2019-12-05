@@ -8,8 +8,9 @@ import org.springframework.stereotype.Service;
 import com.trunghoang.restaurant.domains.CustomerOrder;
 import com.trunghoang.restaurant.domains.dtos.CustomerOrderDTO;
 import com.trunghoang.restaurant.domains.mapper.DefaultClassMapper;
+import com.trunghoang.restaurant.repositories.CustomerOrderRepository;
 import com.trunghoang.restaurant.repositories.IRepository;
-import com.trunghoang.restaurant.repositories.impl.CustomerOrderRepositoryImpl;
+import com.trunghoang.restaurant.services.CustomerOrderService;
 import com.trunghoang.restaurant.services.DefaultService;
 
 /**
@@ -18,10 +19,10 @@ import com.trunghoang.restaurant.services.DefaultService;
  */
 @Service
 public class CustomerOrderServiceImpl
-		extends DefaultService<CustomerOrderDTO, CustomerOrder, IRepository<CustomerOrder>> {
+		extends DefaultService<CustomerOrderDTO, CustomerOrder, IRepository<CustomerOrder>> implements CustomerOrderService {
 
 	@Autowired
-	private CustomerOrderRepositoryImpl customerOrderRepository;
+	private CustomerOrderRepository customerOrderRepository;
 
 	@Autowired
 	private DefaultClassMapper defaultClassMapper;
