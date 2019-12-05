@@ -10,6 +10,7 @@ import com.trunghoang.restaurant.domains.dtos.CustomerOrderDTO;
 import com.trunghoang.restaurant.domains.mapper.DefaultClassMapper;
 import com.trunghoang.restaurant.repositories.IRepository;
 import com.trunghoang.restaurant.repositories.impl.CustomerOrderRepositoryImpl;
+import com.trunghoang.restaurant.services.DefaultService;
 
 /**
  * 
@@ -41,7 +42,7 @@ public class CustomerOrderServiceImpl
 	}
 
 	@Override
-	public List<CustomerOrderDTO> convertToDTOList(List<CustomerOrder> entities) {
+	public List<CustomerOrderDTO> convertToDTOs(List<CustomerOrder> entities) {
 		return defaultClassMapper.convertToList(entities, CustomerOrderDTO.class);
 	}
 }

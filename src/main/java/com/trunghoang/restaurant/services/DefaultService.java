@@ -1,9 +1,8 @@
-package com.trunghoang.restaurant.services.impl;
+package com.trunghoang.restaurant.services;
 
 import java.util.List;
 
 import com.trunghoang.restaurant.repositories.IRepository;
-import com.trunghoang.restaurant.services.IService;
 
 /**
  * 
@@ -17,7 +16,7 @@ public abstract class DefaultService<DTO, ENTITY, REPOSITORY extends IRepository
 
 	@Override
 	public List<DTO> findAll() {
-		return convertToDTOList(getRepository().getAll());
+		return convertToDTOs(getRepository().getAll());
 	}
 
 	@Override
@@ -46,5 +45,5 @@ public abstract class DefaultService<DTO, ENTITY, REPOSITORY extends IRepository
 
 	public abstract ENTITY convertToEntity(DTO dto);
 
-	public abstract List<DTO> convertToDTOList(List<ENTITY> entities);
+	public abstract List<DTO> convertToDTOs(List<ENTITY> entities);
 }

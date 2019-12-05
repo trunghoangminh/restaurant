@@ -10,6 +10,7 @@ import com.trunghoang.restaurant.domains.dtos.MenuDTO;
 import com.trunghoang.restaurant.domains.mapper.DefaultClassMapper;
 import com.trunghoang.restaurant.repositories.IRepository;
 import com.trunghoang.restaurant.repositories.impl.MenuRepositoryImpl;
+import com.trunghoang.restaurant.services.DefaultService;
 
 /**
  * 
@@ -41,7 +42,7 @@ public class MenuServiceImpl extends DefaultService<MenuDTO, Menu, IRepository<M
 	}
 
 	@Override
-	public List<MenuDTO> convertToDTOList(List<Menu> entities) {
+	public List<MenuDTO> convertToDTOs(List<Menu> entities) {
 		return defaultClassMapper.convertToList(entities, MenuDTO.class);
 	}
 

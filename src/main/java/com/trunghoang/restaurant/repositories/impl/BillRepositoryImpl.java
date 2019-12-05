@@ -3,6 +3,7 @@ package com.trunghoang.restaurant.repositories.impl;
 import org.springframework.stereotype.Repository;
 
 import com.trunghoang.restaurant.domains.Bill;
+import com.trunghoang.restaurant.repositories.DefaultRepository;
 
 /**
  * 

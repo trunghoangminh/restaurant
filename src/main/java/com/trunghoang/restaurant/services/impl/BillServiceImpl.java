@@ -10,6 +10,7 @@ import com.trunghoang.restaurant.domains.dtos.BillDTO;
 import com.trunghoang.restaurant.domains.mapper.DefaultClassMapper;
 import com.trunghoang.restaurant.repositories.IRepository;
 import com.trunghoang.restaurant.repositories.impl.BillRepositoryImpl;
+import com.trunghoang.restaurant.services.DefaultService;
 
 /**
  * 
@@ -41,7 +42,7 @@ public class BillServiceImpl extends DefaultService<BillDTO, Bill, IRepository<B
 	}
 
 	@Override
-	public List<BillDTO> convertToDTOList(List<Bill> entities) {
+	public List<BillDTO> convertToDTOs(List<Bill> entities) {
 		return defaultClassMapper.convertToList(entities, BillDTO.class);
 	}
 }
