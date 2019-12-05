@@ -81,8 +81,8 @@ public class Bill implements Serializable, IdEntity {
 		builder.append(id);
 		builder.append(", date=");
 		builder.append(date);
-		builder.append(", custommerOders,");
 		if (customerOrders != null) {
+			builder.append(", custommerOders=");
 			builder.append(customerOrders);
 		}
 		builder.append("]");

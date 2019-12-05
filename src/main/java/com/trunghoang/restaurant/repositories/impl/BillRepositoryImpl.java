@@ -7,7 +7,7 @@ import com.trunghoang.restaurant.domains.Bill;
 /**
  * 
  * 
- *
+ * Bill repository implementation
  */
 @Repository
 public class BillRepositoryImpl extends DefaultRepository<Bill> {
@@ -21,5 +21,4 @@ public class BillRepositoryImpl extends DefaultRepository<Bill> {
 		existedEntity.setDate(entity.getDate());
 		existedEntity.setCustomerOrders(entity.getCustomerOrders());
 	}
-
 }

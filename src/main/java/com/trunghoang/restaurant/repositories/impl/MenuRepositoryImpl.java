@@ -6,7 +6,7 @@ import com.trunghoang.restaurant.domains.Menu;
 
 /**
  * 
- * 
+ * Menu repository implementation
  *
  */
 @Repository

@@ -2,6 +2,12 @@ package com.trunghoang.restaurant.services;
 
 import java.util.List;
 
+/**
+ * 
+ * Interface for service layer
+ *
+ * @param <DTO>
+ */
 public interface IService<DTO> {
 
 	public List<DTO> findAll();

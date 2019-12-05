@@ -17,14 +17,15 @@ import com.trunghoang.restaurant.repositories.IRepository;
 /**
  * 
  * 
- *
+ * Default repository
+ * 
  * @param <ENTITY>
  */
 public abstract class DefaultRepository<ENTITY extends IdEntity> implements IRepository<ENTITY> {
 
 	private Class<ENTITY> clazz;
 
-	@PersistenceContext
+	@PersistenceContext(unitName = "restaurantpersistence")
 	private EntityManager em;
 
 	/**
@@ -46,6 +47,7 @@ public abstract class DefaultRepository<ENTITY extends IdEntity> implements IRep
 	}
 
 	@Override
+	@Transactional
 	public ENTITY findById(long id) {
 		return em.find(clazz, id);
 	}
@@ -64,7 +66,6 @@ public abstract class DefaultRepository<ENTITY extends IdEntity> implements IRep
 	}
 
 	@Override
-	@Transactional
 	public void delete(ENTITY entity) {
 		em.remove(entity);
 	}

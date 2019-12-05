@@ -5,6 +5,14 @@ import java.util.List;
 import com.trunghoang.restaurant.repositories.IRepository;
 import com.trunghoang.restaurant.services.IService;
 
+/**
+ * 
+ * Default service
+ *
+ * @param <DTO>
+ * @param <ENTITY>
+ * @param <REPOSITORY>
+ */
 public abstract class DefaultService<DTO, ENTITY, REPOSITORY extends IRepository<ENTITY>> implements IService<DTO> {
 
 	@Override

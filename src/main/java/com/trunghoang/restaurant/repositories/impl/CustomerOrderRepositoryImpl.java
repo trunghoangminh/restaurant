@@ -4,6 +4,11 @@ import org.springframework.stereotype.Repository;
 
 import com.trunghoang.restaurant.domains.CustomerOrder;
 
+/**
+ * 
+ * Customer order repository implementation
+ *
+ */
 @Repository
 public class CustomerOrderRepositoryImpl extends DefaultRepository<CustomerOrder> {
 

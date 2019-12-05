@@ -11,6 +11,10 @@ import com.trunghoang.restaurant.domains.mapper.DefaultClassMapper;
 import com.trunghoang.restaurant.repositories.IRepository;
 import com.trunghoang.restaurant.repositories.impl.CustomerOrderRepositoryImpl;
 
+/**
+ * 
+ * Customer order service implementation
+ */
 @Service
 public class CustomerOrderServiceImpl
 		extends DefaultService<CustomerOrderDTO, CustomerOrder, IRepository<CustomerOrder>> {

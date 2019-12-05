@@ -50,7 +50,7 @@ public abstract class DefaultController<DTO, SERVICE extends IService<DTO>> {
 
 	@PutMapping(value = "/")
 	@ResponseBody
-	public ResponseEntity<DTO> update(@PathVariable DTO dto) {
+	public ResponseEntity<DTO> update(@RequestBody DTO dto) {
 		getService().update(dto);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
@@ -60,6 +60,7 @@ public abstract class DefaultController<DTO, SERVICE extends IService<DTO>> {
 	public ResponseEntity<DTO> delete(@PathVariable long id) {
 		return new ResponseEntity<>(getService().findById(id), HttpStatus.OK);
 	}
+
 	public static void main(String[] args) {
 		System.out.println(System.currentTimeMillis());
 	}
