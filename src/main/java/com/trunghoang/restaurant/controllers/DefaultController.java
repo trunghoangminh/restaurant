@@ -60,9 +60,4 @@ public abstract class DefaultController<DTO, SERVICE extends IService<DTO>> {
 	public ResponseEntity<DTO> delete(@PathVariable long id) {
 		return new ResponseEntity<>(getService().findById(id), HttpStatus.OK);
 	}
-
-	public static void main(String[] args) {
-		System.out.println(System.currentTimeMillis());
-	}
-
 }
