@@ -19,34 +19,41 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SwaggerConfig extends WebMvcConfigurerAdapter {
 
+	private static final String TITLE = "TITLE";
+	private static final String DESCRIPTION = "DESCRIPTION";
+	private static final String VERSION = "VERSION";
+	private static final String LICENSE = "LICENSE";
+
+	private static final String URL_PATTERN = "/v1/.*";
+
 	// @formatter:off
 	@Bean
 	public Docket api() {
 		return new Docket(DocumentationType.SWAGGER_2)
 				.select()
 				.apis(RequestHandlerSelectors.any())
-				.paths(PathSelectors.regex("/v1/.*"))
+				// look up urls in  "/v1/*"
+				.paths(PathSelectors.regex(URL_PATTERN))
 				.build()
 				.apiInfo(apiInfo());
 	}
 
 	private ApiInfo apiInfo() {
 		return new ApiInfoBuilder()
-				.title("TITLE")
-				.description("DESCRIPTION")
-				.version("VERSION")
+				.title(TITLE)
+				.description(DESCRIPTION)
+				.version(VERSION)
 				.termsOfServiceUrl("http://terms-of-services.url")
-				.license("LICENSE")
-				.licenseUrl("http://url-to-license.com").build();
+				.license(LICENSE)
+				.licenseUrl("http://url-to-license.com")
+				.build();
 	}
 	// @formatter:on
-	
+
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		// enabling swagger-ui part for visual documentation
+		// Enable swagger-ui for visual documentation
 		registry.addResourceHandler("swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/");
 		registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
 	}
-	
-
 }
