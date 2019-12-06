@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.trunghoang.restaurant.exceptions.ApplicationException;
@@ -36,8 +37,9 @@ public abstract class DefaultController<DTO, SERVICE extends IService<DTO>> impl
 	@GetMapping(value = "/")
 	@ResponseBody
 	@Override
-	public ResponseEntity<List<DTO>> getAll() {
-		return new ResponseEntity<>(getService().findAll(), HttpStatus.OK);
+	public ResponseEntity<List<DTO>> getAll(@RequestParam(value = "pageNumer") int pageNumer,
+			@RequestParam(value = "numberOfRecord") int numberOfRecord) {
+		return new ResponseEntity<>(getService().findAll(pageNumer, numberOfRecord), HttpStatus.OK);
 	}
 
 	@ApiOperation(value = "")

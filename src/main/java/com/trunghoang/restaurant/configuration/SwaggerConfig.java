@@ -19,8 +19,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SwaggerConfig extends WebMvcConfigurerAdapter {
 
-	private static final String TITLE = "TITLE";
-	private static final String DESCRIPTION = "DESCRIPTION";
+	private static final String TITLE = "Restaurant application";
+	private static final String DESCRIPTION = "Support CRUD to manage the restaurant";
 	private static final String VERSION = "VERSION";
 	private static final String LICENSE = "LICENSE";
 

@@ -18,8 +18,8 @@ import com.trunghoang.restaurant.repositories.IRepository;
 public abstract class DefaultService<DTO, ENTITY, REPOSITORY extends IRepository<ENTITY>> implements IService<DTO> {
 
 	@Override
-	public List<DTO> findAll() {
-		return convertToDTOs(getRepository().getAll());
+	public List<DTO> findAll(int pageNumer, int numberOfRecord) {
+		return convertToDTOs(getRepository().getAll(pageNumer, numberOfRecord));
 	}
 
 	@Override

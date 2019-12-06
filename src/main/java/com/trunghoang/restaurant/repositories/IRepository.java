@@ -12,7 +12,7 @@ import com.trunghoang.restaurant.exceptions.ApplicationException;
  */
 public interface IRepository<ENTITY> {
 
-	public List<ENTITY> getAll();
+	public List<ENTITY> getAll(int pageNumer, int numberOfRecord);
 
 	public ENTITY findById(long id);
 

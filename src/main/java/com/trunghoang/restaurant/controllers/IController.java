@@ -16,7 +16,7 @@ import com.trunghoang.restaurant.exceptions.ApplicationException;
  */
 public interface IController<DTO> {
 
-	public ResponseEntity<List<DTO>> getAll();
+	public ResponseEntity<List<DTO>> getAll(int pageNumer, int numberOfRecord);
 
 	public ResponseEntity<DTO> findById(@PathVariable long id);
 
