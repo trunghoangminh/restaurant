@@ -29,6 +29,7 @@ public class MenuController extends DefaultController<MenuDTO, IService<MenuDTO>
 
 	@GetMapping(value = "/search")
 	public ResponseEntity<List<MenuDTO>> search(@RequestParam(value = "keyword") String keyword) {
+		logEvent("Search of " + this.getClass());
 		List<MenuDTO> result = menuService.search(keyword);
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}

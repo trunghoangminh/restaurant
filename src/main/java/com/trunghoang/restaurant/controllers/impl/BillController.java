@@ -38,8 +38,10 @@ public class BillController extends DefaultController<BillDTO, IService<BillDTO>
 	 */
 	@PostMapping(value = "/create")
 	public ResponseEntity<Void> createBill() {
+
+		logEvent("Create bill of " + this.getClass());
 		BillDTO billDTO = new BillDTO();
 		billDTO.setDate(new Timestamp(System.currentTimeMillis()));
-		return super.add(billDTO);
+		return add(billDTO);
 	}
 }

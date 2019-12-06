@@ -39,6 +39,7 @@ public abstract class DefaultController<DTO, SERVICE extends IService<DTO>> impl
 	@Override
 	public ResponseEntity<List<DTO>> getAll(@RequestParam(value = "pageNumer") int pageNumer,
 			@RequestParam(value = "numberOfRecord") int numberOfRecord) {
+		logEvent("Get all of " + this.getClass());
 		return new ResponseEntity<>(getService().findAll(pageNumer, numberOfRecord), HttpStatus.OK);
 	}
 
@@ -47,6 +48,7 @@ public abstract class DefaultController<DTO, SERVICE extends IService<DTO>> impl
 	@ResponseBody
 	@Override
 	public ResponseEntity<DTO> findById(@PathVariable long id) {
+		logEvent("Find by ID of " + this.getClass());
 		return new ResponseEntity<>(getService().findById(id), HttpStatus.OK);
 	}
 
@@ -55,6 +57,7 @@ public abstract class DefaultController<DTO, SERVICE extends IService<DTO>> impl
 	@ResponseBody
 	@Override
 	public ResponseEntity<Void> add(@RequestBody DTO dto) {
+		logEvent("Add of " + this.getClass());
 		getService().add(dto);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
@@ -64,6 +67,7 @@ public abstract class DefaultController<DTO, SERVICE extends IService<DTO>> impl
 	@ResponseBody
 	@Override
 	public ResponseEntity<Void> update(@RequestBody DTO dto) {
+		logEvent("Update of " + this.getClass());
 		getService().update(dto);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
@@ -73,7 +77,19 @@ public abstract class DefaultController<DTO, SERVICE extends IService<DTO>> impl
 	@ResponseBody
 	@Override
 	public ResponseEntity<Void> delete(@PathVariable long id) throws ApplicationException {
+		logEvent("Delete of " + this.getClass());
 		getService().delete(id);
 		return new ResponseEntity<>(HttpStatus.OK);
+	}
+
+	/**
+	 * Log event for controller
+	 * 
+	 * @param message
+	 */
+	public void logEvent(String message) {
+		if (log.isInfoEnabled()) {
+			log.info(message);
+		}
 	}
 }
