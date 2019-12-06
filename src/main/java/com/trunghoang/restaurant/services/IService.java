@@ -12,7 +12,7 @@ import com.trunghoang.restaurant.exceptions.ApplicationException;
  */
 public interface IService<DTO> {
 
-	public List<DTO> findAll(int pageNumer, int numberOfRecord);
+	public List<DTO> findAll(int pageNumber, int numberOfRecord);
 
 	public DTO findById(long id);
 

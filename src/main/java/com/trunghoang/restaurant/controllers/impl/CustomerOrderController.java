@@ -17,7 +17,7 @@ public class CustomerOrderController extends DefaultController<CustomerOrderDTO,
 	private CustomerOrderService customerOrderService;
 
 	@Override
-	public IService<CustomerOrderDTO> getService() {
+	public CustomerOrderService getService() {
 		return customerOrderService;
 	}
 

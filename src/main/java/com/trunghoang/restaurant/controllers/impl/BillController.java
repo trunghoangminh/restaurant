@@ -22,7 +22,7 @@ public class BillController extends DefaultController<BillDTO, IService<BillDTO>
 	private BillService billService;
 
 	@Override
-	public IService<BillDTO> getService() {
+	public BillService getService() {
 		return billService;
 	}
 

@@ -36,13 +36,13 @@ public abstract class DefaultRepository<ENTITY extends IdEntity> implements IRep
 	}
 
 	@Override
-	public List<ENTITY> getAll(int pageNumer, int numberOfRecord) {
+	public List<ENTITY> getAll(int pageNumber, int numberOfRecord) {
 		CriteriaBuilder cb = em.getCriteriaBuilder();
 		CriteriaQuery<ENTITY> cq = cb.createQuery(clazz);
 		Root<ENTITY> rootEntry = cq.from(clazz);
 		CriteriaQuery<ENTITY> all = cq.select(rootEntry);
 		TypedQuery<ENTITY> allQuery = em.createQuery(all);
-		allQuery.setFirstResult((pageNumer - 1) * numberOfRecord);
+		allQuery.setFirstResult((pageNumber - 1) * numberOfRecord);
 		allQuery.setMaxResults(numberOfRecord);
 		return allQuery.getResultList();
 	}

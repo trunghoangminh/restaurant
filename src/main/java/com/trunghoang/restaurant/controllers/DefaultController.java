@@ -37,10 +37,10 @@ public abstract class DefaultController<DTO, SERVICE extends IService<DTO>> impl
 	@GetMapping(value = "/")
 	@ResponseBody
 	@Override
-	public ResponseEntity<List<DTO>> getAll(@RequestParam(value = "pageNumer") int pageNumer,
+	public ResponseEntity<List<DTO>> getAll(@RequestParam(value = "pageNumer") int pageNumber,
 			@RequestParam(value = "numberOfRecord") int numberOfRecord) {
 		logEvent("Get all of " + this.getClass());
-		return new ResponseEntity<>(getService().findAll(pageNumer, numberOfRecord), HttpStatus.OK);
+		return new ResponseEntity<>(getService().findAll(pageNumber, numberOfRecord), HttpStatus.OK);
 	}
 
 	@ApiOperation(value = "")
