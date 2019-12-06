@@ -25,6 +25,8 @@
 		<hibernate.core.version>5.2.8.Final</hibernate.core.version>
 		<lambok.verion>1.16.20</lambok.verion>
 		<orika.version>1.4.6</orika.version>
+		<swagger.version>2.5.0</swagger.version>
+		<swagger.ui.version>2.6.1</swagger.ui.version>
 	</properties>
 
 	<dependencies>
@@ -111,6 +113,18 @@
 					<artifactId>slf4j-api</artifactId>
 				</exclusion>
 			</exclusions>
+		</dependency>
+
+		<!-- Swagger -->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>${swagger.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>${swagger.ui.version}</version>
 		</dependency>
 
 	</dependencies>

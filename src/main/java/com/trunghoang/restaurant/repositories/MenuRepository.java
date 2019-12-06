@@ -9,6 +9,6 @@ import com.trunghoang.restaurant.domains.Menu;
  * 
  *
  */
-public interface MenuRepository extends IRepository<Menu>{
-	public List<Menu> search(String title, String description, String additionalDetails);
+public interface MenuRepository extends IRepository<Menu> {
+	public List<Menu> search(String keyword);
 }

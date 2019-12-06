@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.trunghoang.restaurant.controllers.DefaultController;
@@ -27,8 +28,8 @@ public class MenuController extends DefaultController<MenuDTO, IService<MenuDTO>
 	}
 
 	@GetMapping(value = "/search")
-	public ResponseEntity<List<MenuDTO>> search(String title, String description, String additionalDetails) {
-		List<MenuDTO> result = menuService.search(title, description, additionalDetails);
+	public ResponseEntity<List<MenuDTO>> search(@RequestParam(value = "keyword") String keyword) {
+		List<MenuDTO> result = menuService.search(keyword);
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 }

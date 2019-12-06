@@ -1,8 +1,11 @@
 package com.trunghoang.restaurant.controllers.impl;
 
+import java.sql.Timestamp;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,5 +29,17 @@ public class BillController extends DefaultController<BillDTO, IService<BillDTO>
 	@Override
 	public ResponseEntity<Void> delete(@PathVariable long id) {
 		throw new UnsupportedOperationException("Unsupported delete function");
+	}
+
+	/**
+	 * Create bill
+	 * 
+	 * @return
+	 */
+	@PostMapping(value = "/create")
+	public ResponseEntity<Void> createBill() {
+		BillDTO billDTO = new BillDTO();
+		billDTO.setDate(new Timestamp(System.currentTimeMillis()));
+		return super.add(billDTO);
 	}
 }

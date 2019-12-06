@@ -47,9 +47,8 @@ public class MenuServiceImpl extends DefaultService<MenuDTO, Menu, IRepository<M
 		return defaultClassMapper.convertToList(entities, MenuDTO.class);
 	}
 
-	public List<MenuDTO> search(String title, String description, String additionalDetails) {
-		return defaultClassMapper.convertToList(menuRepository.search(title, description, additionalDetails),
-				MenuDTO.class);
+	public List<MenuDTO> search(String keyword) {
+		return defaultClassMapper.convertToList(menuRepository.search(keyword), MenuDTO.class);
 	}
 
 }
