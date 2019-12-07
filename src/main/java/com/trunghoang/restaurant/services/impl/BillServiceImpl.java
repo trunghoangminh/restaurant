@@ -80,11 +80,13 @@ public class BillServiceImpl extends DefaultService<BillDTO, Bill, BillRepositor
 	}
 	
 	@Override
+	@Transactional
 	public void deleteCustomerOrder(long id) throws ApplicationException{
 		customerOrderRepository.delete(id);
 	}
 	
 	@Override
+	@Transactional
 	public void updateCustomerOrder(long id, int quantity, Timestamp orderTime ) throws ApplicationException{
 		CustomerOrder customerOrder = new CustomerOrder();
 		customerOrder.setId(id);

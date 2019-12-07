@@ -22,7 +22,5 @@ public class CustomerOrderRepositoryImpl extends DefaultRepository<CustomerOrder
 	public void updateInfo(CustomerOrder existedEntity, CustomerOrder entity) {
 		existedEntity.setOrderedTime(entity.getOrderedTime());
 		existedEntity.setQuantity(entity.getQuantity());
-		existedEntity.setBill(entity.getBill());
-		existedEntity.setMenu(entity.getMenu());
 	}
 }
