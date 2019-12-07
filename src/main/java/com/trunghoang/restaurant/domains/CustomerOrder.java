@@ -2,6 +2,7 @@ package com.trunghoang.restaurant.domains;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -52,7 +53,7 @@ public class CustomerOrder implements Serializable, IdEntity {
 	private Menu menu;
 
 	@Column(name = ORDERED_TIME)
-	private Date orderedTime;
+	private Timestamp orderedTime;
 
 	@Column(name = QUANTITY)
 	private int quantity;

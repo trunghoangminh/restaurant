@@ -18,7 +18,7 @@ public interface IService<DTO> {
 
 	public void add(DTO dto);
 
-	public void update(DTO dto);
+	public void update(DTO dto) throws ApplicationException;
 
 	public void delete(long id) throws ApplicationException;
 }

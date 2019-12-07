@@ -35,7 +35,7 @@ public abstract class DefaultService<DTO, ENTITY, REPOSITORY extends IRepository
 
 	@Override
 	@Transactional
-	public void update(DTO dto) {
+	public void update(DTO dto) throws ApplicationException {
 		getRepository().update(convertToEntity(dto));
 	}
 

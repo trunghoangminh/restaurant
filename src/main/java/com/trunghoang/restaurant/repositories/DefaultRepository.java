@@ -58,8 +58,11 @@ public abstract class DefaultRepository<ENTITY extends IdEntity> implements IRep
 	}
 
 	@Override
-	public void update(ENTITY entity) {
+	public void update(ENTITY entity) throws ApplicationException {
 		ENTITY existedEntity = findById(entity.getId());
+		if (existedEntity == null) {
+			throw new ApplicationException(ErrorMessage.ENTITY_NOT_FOUND.toString());
+		}
 		updateInfo(existedEntity, entity);
 	}
 

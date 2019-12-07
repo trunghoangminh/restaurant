@@ -13,12 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.trunghoang.restaurant.exceptions.ApplicationException;
 import com.trunghoang.restaurant.services.IService;
-
-import io.swagger.annotations.ApiOperation;
 
 /**
  * 
@@ -33,9 +30,7 @@ public abstract class DefaultController<DTO, SERVICE extends IService<DTO>> impl
 
 	public abstract SERVICE getService();
 
-	@ApiOperation(value = "")
 	@GetMapping(value = "/")
-	@ResponseBody
 	@Override
 	public ResponseEntity<List<DTO>> getAll(@RequestParam(value = "pageNumer") int pageNumber,
 			@RequestParam(value = "numberOfRecord") int numberOfRecord) {
@@ -43,18 +38,14 @@ public abstract class DefaultController<DTO, SERVICE extends IService<DTO>> impl
 		return new ResponseEntity<>(getService().findAll(pageNumber, numberOfRecord), HttpStatus.OK);
 	}
 
-	@ApiOperation(value = "")
 	@GetMapping(value = "/{id}")
-	@ResponseBody
 	@Override
 	public ResponseEntity<DTO> findById(@PathVariable long id) {
 		logEvent("Find by ID of " + this.getClass());
 		return new ResponseEntity<>(getService().findById(id), HttpStatus.OK);
 	}
 
-	@ApiOperation(value = "")
 	@PostMapping(value = "/")
-	@ResponseBody
 	@Override
 	public ResponseEntity<Void> add(@RequestBody DTO dto) {
 		logEvent("Add of " + this.getClass());
@@ -62,19 +53,15 @@ public abstract class DefaultController<DTO, SERVICE extends IService<DTO>> impl
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
-	@ApiOperation(value = "")
 	@PutMapping(value = "/")
-	@ResponseBody
 	@Override
-	public ResponseEntity<Void> update(@RequestBody DTO dto) {
+	public ResponseEntity<Void> update(@RequestBody DTO dto) throws ApplicationException {
 		logEvent("Update of " + this.getClass());
 		getService().update(dto);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
-	@ApiOperation(value = "")
 	@DeleteMapping(value = "/{id}")
-	@ResponseBody
 	@Override
 	public ResponseEntity<Void> delete(@PathVariable long id) throws ApplicationException {
 		logEvent("Delete of " + this.getClass());

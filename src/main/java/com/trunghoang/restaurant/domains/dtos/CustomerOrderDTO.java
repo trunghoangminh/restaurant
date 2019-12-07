@@ -1,6 +1,7 @@
 package com.trunghoang.restaurant.domains.dtos;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,7 +18,7 @@ public class CustomerOrderDTO implements IdDTO {
 
 	private MenuDTO menu;
 
-	private Date orderedTime;
+	private Timestamp orderedTime;
 
 	private int quantity;
 
@@ -60,6 +61,10 @@ public class CustomerOrderDTO implements IdDTO {
 		builder.append(quantity);
 		builder.append("]");
 		return builder.toString();
+	}
+
+	public static void main(String[] args) {
+		System.out.println(System.currentTimeMillis());
 	}
 
 }

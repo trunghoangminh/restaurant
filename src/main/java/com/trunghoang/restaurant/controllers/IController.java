@@ -22,7 +22,7 @@ public interface IController<DTO> {
 
 	public ResponseEntity<Void> add(@RequestBody DTO dto);
 
-	public ResponseEntity<Void> update(@RequestBody DTO dto);
+	public ResponseEntity<Void> update(@RequestBody DTO dto) throws ApplicationException;
 
 	public ResponseEntity<Void> delete(@PathVariable long id) throws ApplicationException;
 }

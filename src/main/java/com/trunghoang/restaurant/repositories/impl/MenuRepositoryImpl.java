@@ -19,10 +19,10 @@ import com.trunghoang.restaurant.repositories.MenuRepository;
 public class MenuRepositoryImpl extends DefaultRepository<Menu> implements MenuRepository {
 
 	// @formatter:off
-	private static final String SEARCH = "SELECT menu FROM Menu menu WHERE " + "(name LIKE CONCAT('%', :keyword, '%')) OR "
+	private static final String SEARCH = "SELECT menu FROM Menu menu WHERE " 
+			+ "(name LIKE CONCAT('%', :keyword, '%')) OR "
 			+ "(description LIKE CONCAT('%', :keyword, '%')) OR "
 			+ "(additionalDetails LIKE CONCAT('%', :keyword, '%'))";
-
 	// @formatter:on
 
 	public MenuRepositoryImpl() {

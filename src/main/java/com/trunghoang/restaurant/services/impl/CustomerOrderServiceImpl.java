@@ -9,7 +9,6 @@ import com.trunghoang.restaurant.domains.CustomerOrder;
 import com.trunghoang.restaurant.domains.dtos.CustomerOrderDTO;
 import com.trunghoang.restaurant.domains.mapper.DefaultClassMapper;
 import com.trunghoang.restaurant.repositories.CustomerOrderRepository;
-import com.trunghoang.restaurant.repositories.IRepository;
 import com.trunghoang.restaurant.services.CustomerOrderService;
 import com.trunghoang.restaurant.services.DefaultService;
 
@@ -19,7 +18,7 @@ import com.trunghoang.restaurant.services.DefaultService;
  */
 @Service
 public class CustomerOrderServiceImpl
-		extends DefaultService<CustomerOrderDTO, CustomerOrder, IRepository<CustomerOrder>> implements CustomerOrderService {
+		extends DefaultService<CustomerOrderDTO, CustomerOrder, CustomerOrderRepository> implements CustomerOrderService {
 
 	@Autowired
 	private CustomerOrderRepository customerOrderRepository;
@@ -28,7 +27,7 @@ public class CustomerOrderServiceImpl
 	private DefaultClassMapper defaultClassMapper;
 
 	@Override
-	public IRepository<CustomerOrder> getRepository() {
+	public CustomerOrderRepository getRepository() {
 		return customerOrderRepository;
 	}
 

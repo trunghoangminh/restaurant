@@ -18,7 +18,7 @@ public interface IRepository<ENTITY> {
 
 	public void add(ENTITY entity);
 
-	public void update(ENTITY entity);
+	public void update(ENTITY entity) throws ApplicationException;
 
 	public void delete(long id) throws ApplicationException;
 

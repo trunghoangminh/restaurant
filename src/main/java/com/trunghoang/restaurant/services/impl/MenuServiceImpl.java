@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.trunghoang.restaurant.domains.Menu;
 import com.trunghoang.restaurant.domains.dtos.MenuDTO;
 import com.trunghoang.restaurant.domains.mapper.DefaultClassMapper;
-import com.trunghoang.restaurant.repositories.IRepository;
 import com.trunghoang.restaurant.repositories.MenuRepository;
 import com.trunghoang.restaurant.services.DefaultService;
 import com.trunghoang.restaurant.services.MenuService;
@@ -19,7 +18,7 @@ import com.trunghoang.restaurant.services.MenuService;
  *
  */
 @Service
-public class MenuServiceImpl extends DefaultService<MenuDTO, Menu, IRepository<Menu>> implements MenuService {
+public class MenuServiceImpl extends DefaultService<MenuDTO, Menu, MenuRepository> implements MenuService {
 
 	@Autowired
 	private MenuRepository menuRepository;
@@ -28,7 +27,7 @@ public class MenuServiceImpl extends DefaultService<MenuDTO, Menu, IRepository<M
 	private DefaultClassMapper defaultClassMapper;
 
 	@Override
-	public IRepository<Menu> getRepository() {
+	public MenuRepository getRepository() {
 		return menuRepository;
 	}
 
