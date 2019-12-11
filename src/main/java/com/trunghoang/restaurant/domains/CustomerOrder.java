@@ -1,7 +1,6 @@
 package com.trunghoang.restaurant.domains;
 
 import java.io.Serializable;
-import java.sql.Date;
 import java.sql.Timestamp;
 
 import javax.persistence.CascadeType;

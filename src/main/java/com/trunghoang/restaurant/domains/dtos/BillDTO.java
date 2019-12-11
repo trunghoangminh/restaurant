@@ -1,5 +1,6 @@
 package com.trunghoang.restaurant.domains.dtos;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Set;
 
@@ -17,6 +18,17 @@ public class BillDTO implements IdDTO {
 	private Timestamp date;
 
 	private Set<CustomerOrderDTO> customerOrders;
+
+	/**
+	 * Get total price
+	 * 
+	 * @return
+	 */
+	public BigDecimal getTotalPrice() {
+		BigDecimal total = BigDecimal.ZERO;
+		customerOrders.forEach(e -> total.add(e.getSubTotalPrice()));
+		return total;
+	}
 
 	@Override
 	public int hashCode() {

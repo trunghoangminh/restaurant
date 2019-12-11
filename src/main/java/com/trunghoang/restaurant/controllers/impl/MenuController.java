@@ -13,25 +13,23 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.trunghoang.restaurant.controllers.DefaultController;
 import com.trunghoang.restaurant.domains.dtos.MenuDTO;
-import com.trunghoang.restaurant.services.IService;
 import com.trunghoang.restaurant.services.MenuService;
 
 @RestController
 @RequestMapping("/v1/menu")
-public class MenuController extends DefaultController<MenuDTO, IService<MenuDTO>> {
+public class MenuController extends DefaultController<MenuDTO, MenuService> {
 
 	@Autowired
 	private MenuService menuService;
 
 	@Override
-	public IService<MenuDTO> getService() {
+	public MenuService getService() {
 		return menuService;
 	}
 
 	@GetMapping(value = "/search")
 	@ResponseBody
 	public ResponseEntity<List<MenuDTO>> search(@RequestParam(value = "keyword") String keyword) {
-		logEvent("Search of " + this.getClass());
 		List<MenuDTO> result = menuService.search(keyword);
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}

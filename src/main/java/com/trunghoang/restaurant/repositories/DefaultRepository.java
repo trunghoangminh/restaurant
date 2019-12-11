@@ -22,7 +22,7 @@ import com.trunghoang.restaurant.exceptions.ApplicationException;
  */
 public abstract class DefaultRepository<ENTITY extends IdEntity> implements IRepository<ENTITY> {
 
-	private Class<ENTITY> clazz;
+	protected Class<ENTITY> clazz;
 
 	@PersistenceContext(unitName = "restaurantpersistence")
 	protected EntityManager em;
@@ -42,8 +42,13 @@ public abstract class DefaultRepository<ENTITY extends IdEntity> implements IRep
 		Root<ENTITY> rootEntry = cq.from(clazz);
 		CriteriaQuery<ENTITY> all = cq.select(rootEntry);
 		TypedQuery<ENTITY> allQuery = em.createQuery(all);
-		allQuery.setFirstResult((pageNumber - 1) * numberOfRecord);
-		allQuery.setMaxResults(numberOfRecord);
+		// Paging if page number and number of record > 0. Otherwise get all
+		// record
+		if (pageNumber > 0 && numberOfRecord > 0) {
+			allQuery.setFirstResult((pageNumber - 1) * numberOfRecord);
+			allQuery.setMaxResults(numberOfRecord);
+		}
+
 		return allQuery.getResultList();
 	}
 

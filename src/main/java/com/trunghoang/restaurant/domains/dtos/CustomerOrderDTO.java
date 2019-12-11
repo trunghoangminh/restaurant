@@ -1,6 +1,6 @@
 package com.trunghoang.restaurant.domains.dtos;
 
-import java.sql.Date;
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 import lombok.Getter;
@@ -21,6 +21,17 @@ public class CustomerOrderDTO implements IdDTO {
 	private Timestamp orderedTime;
 
 	private int quantity;
+
+	/**
+	 * Get sub total price
+	 * 
+	 * @return
+	 */
+	public BigDecimal getSubTotalPrice() {
+		BigDecimal price = menu.getPrice();
+		BigDecimal bigDecimalQuantity = BigDecimal.valueOf(quantity);
+		return price.multiply(bigDecimalQuantity);
+	}
 
 	@Override
 	public int hashCode() {
@@ -62,9 +73,4 @@ public class CustomerOrderDTO implements IdDTO {
 		builder.append("]");
 		return builder.toString();
 	}
-
-	public static void main(String[] args) {
-		System.out.println(System.currentTimeMillis());
-	}
-
 }
