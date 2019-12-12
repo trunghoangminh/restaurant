@@ -7,10 +7,15 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * 
+ * This class represent for a record in CustomerOrder table
+ *
+ */
 @Getter
 @Setter
 @NoArgsConstructor
-public class BillOrder {
+public class OrderInfo {
 
 	private long id;
 

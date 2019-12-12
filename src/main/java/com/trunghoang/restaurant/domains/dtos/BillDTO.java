@@ -26,7 +26,9 @@ public class BillDTO implements IdDTO {
 	 */
 	public BigDecimal getTotalPrice() {
 		BigDecimal total = BigDecimal.ZERO;
-		customerOrders.forEach(e -> total.add(e.getSubTotalPrice()));
+		for (CustomerOrderDTO customerOrderDTO : customerOrders) {
+			total = total.add(customerOrderDTO.getSubTotalPrice());
+		}
 		return total;
 	}
 

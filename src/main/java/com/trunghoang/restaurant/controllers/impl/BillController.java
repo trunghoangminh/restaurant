@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.trunghoang.restaurant.controllers.DefaultController;
 import com.trunghoang.restaurant.domains.dtos.BillDTO;
 import com.trunghoang.restaurant.domains.report.BillReport;
+import com.trunghoang.restaurant.domains.report.BillTotalReport;
 import com.trunghoang.restaurant.domains.report.Customer;
 import com.trunghoang.restaurant.exceptions.ApplicationException;
 import com.trunghoang.restaurant.services.BillService;
@@ -60,16 +61,28 @@ public class BillController extends DefaultController<BillDTO, BillService> {
 	}
 
 	/**
+	 * Get report for each bill
 	 * 
 	 * @return
 	 */
 	@GetMapping(value = "/order/{billId}")
-	public ResponseEntity<BillReport> billOrder(@PathVariable long billId) {
+	public ResponseEntity<BillReport> getBillReport(@PathVariable long billId) {
 		BillReport billReport = customerOrderService.getBillReport(billId);
 		return new ResponseEntity<>(billReport, HttpStatus.OK);
 	}
 
 	/**
+	 * Get report for all bill in system
+	 * 
+	 * @return
+	 */
+	@GetMapping(value = "/order/total")
+	public ResponseEntity<BillTotalReport> getBillTotalReport() {
+		return new ResponseEntity<>(billService.checkBillOrder(), HttpStatus.OK);
+	}
+
+	/**
+	 * Create new customer order
 	 * 
 	 * @param customer
 	 * @return
@@ -82,6 +95,7 @@ public class BillController extends DefaultController<BillDTO, BillService> {
 	}
 
 	/**
+	 * Update the customer order
 	 * 
 	 * @param id
 	 * @param quantity
@@ -96,6 +110,7 @@ public class BillController extends DefaultController<BillDTO, BillService> {
 	}
 
 	/**
+	 * Remove customer order
 	 * 
 	 * @param id
 	 * @return

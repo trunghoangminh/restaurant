@@ -7,20 +7,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-/**
- * 
- * 
- * This class represent for a bill
- */
 @Getter
 @Setter
 @NoArgsConstructor
-public class BillReport {
+public class BillTotalReport {
 
-	private long id;
+	private List<BillReport> billReports;
 
-	private List<OrderInfo> billOrders;
+	private int numberOfBill;
 
-	private BigDecimal totalPrice;
-
+	private BigDecimal grandTotal;
 }

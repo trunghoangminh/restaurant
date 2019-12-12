@@ -15,7 +15,7 @@ import com.trunghoang.restaurant.domains.CustomerOrder;
 import com.trunghoang.restaurant.domains.Menu;
 import com.trunghoang.restaurant.domains.dtos.CustomerOrderDTO;
 import com.trunghoang.restaurant.domains.mapper.DefaultClassMapper;
-import com.trunghoang.restaurant.domains.report.BillOrder;
+import com.trunghoang.restaurant.domains.report.OrderInfo;
 import com.trunghoang.restaurant.domains.report.BillReport;
 import com.trunghoang.restaurant.exceptions.ApplicationException;
 import com.trunghoang.restaurant.repositories.BillRepository;
@@ -69,22 +69,14 @@ public class CustomerOrderServiceImpl extends DefaultService<CustomerOrderDTO, C
 
 		List<CustomerOrderDTO> customerOrders = convertToDTOs(customerOrderRepository.getBillReport(billId));
 		BillReport billReport = new BillReport();
-		List<BillOrder> billOrders = new ArrayList<>();
+		List<OrderInfo> billOrders = new ArrayList<>();
 		BigDecimal grandTotal = BigDecimal.ZERO;
 
 		for (CustomerOrderDTO order : customerOrders) {
-			BillOrder billOrder = new BillOrder();
-			billOrder.setId(order.getId());
-			billOrder.setMenu(order.getMenu().getName());
-			billOrder.setQuantity(order.getQuantity());
-			billOrder.setOrderTime(order.getOrderedTime());
-			billOrder.setTotalPrice(order.getSubTotalPrice());
-			billOrder.setPrice(order.getMenu().getPrice());
-
-			billOrders.add(billOrder);
+			billOrders.add(BillServiceImpl.getOrderInfo(order));
 			grandTotal = grandTotal.add(order.getSubTotalPrice());
 		}
-
+		billReport.setId(billId);
 		billReport.setTotalPrice(grandTotal);
 		billReport.setBillOrders(billOrders);
 		return billReport;
