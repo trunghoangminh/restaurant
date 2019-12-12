@@ -1,7 +1,6 @@
 package com.trunghoang.restaurant.controllers.impl;
 
 import java.sql.Timestamp;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,12 +16,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.trunghoang.restaurant.controllers.DefaultController;
 import com.trunghoang.restaurant.domains.dtos.BillDTO;
-import com.trunghoang.restaurant.domains.report.BillOrder;
+import com.trunghoang.restaurant.domains.report.BillReport;
 import com.trunghoang.restaurant.domains.report.Customer;
 import com.trunghoang.restaurant.exceptions.ApplicationException;
 import com.trunghoang.restaurant.services.BillService;
 import com.trunghoang.restaurant.services.CustomerOrderService;
 
+/**
+ * 
+ * Bill controller
+ *
+ */
 @RestController
 @RequestMapping("/v1/bill")
 public class BillController extends DefaultController<BillDTO, BillService> {
@@ -60,9 +64,9 @@ public class BillController extends DefaultController<BillDTO, BillService> {
 	 * @return
 	 */
 	@GetMapping(value = "/order/{billId}")
-	public ResponseEntity<List<BillOrder>> billOrder(@PathVariable long billId) {
-		List<BillOrder> billOrders = customerOrderService.getBillOrder(billId);
-		return new ResponseEntity<>(billOrders, HttpStatus.OK);
+	public ResponseEntity<BillReport> billOrder(@PathVariable long billId) {
+		BillReport billReport = customerOrderService.getBillReport(billId);
+		return new ResponseEntity<>(billReport, HttpStatus.OK);
 	}
 
 	/**
@@ -71,7 +75,7 @@ public class BillController extends DefaultController<BillDTO, BillService> {
 	 * @return
 	 * @throws ApplicationException
 	 */
-	@PostMapping("/order")
+	@PostMapping(value = "/order")
 	public ResponseEntity<Void> createCustomerOder(@RequestBody Customer customer) throws ApplicationException {
 		customerOrderService.createCustomerOrder(customer.getBillId(), customer.getMenuId(), customer.getQuantity());
 		return new ResponseEntity<>(HttpStatus.OK);
@@ -84,10 +88,10 @@ public class BillController extends DefaultController<BillDTO, BillService> {
 	 * @return
 	 * @throws ApplicationException
 	 */
-	@PutMapping("/order/{id}/{quantity}")
-	public ResponseEntity<Void> updateCustomerOder(@PathVariable long id, @PathVariable int quantity)
-			throws ApplicationException {
-		customerOrderService.updateCustomerOrder(id, quantity);
+	@PutMapping(value = "/order/{id}")
+	public ResponseEntity<Void> updateCustomerOder(@PathVariable(name = "id") long customerOrderId,
+			@RequestBody int quantity) throws ApplicationException {
+		customerOrderService.updateCustomerOrder(customerOrderId, quantity);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
@@ -97,9 +101,10 @@ public class BillController extends DefaultController<BillDTO, BillService> {
 	 * @return
 	 * @throws ApplicationException
 	 */
-	@DeleteMapping("/order/{id}")
-	public ResponseEntity<Void> deleteCustomerOder(@PathVariable long id) throws ApplicationException {
-		customerOrderService.deleteCustomerOrder(id);
+	@DeleteMapping(value = "/order/{id}")
+	public ResponseEntity<Void> deleteCustomerOder(@PathVariable(name = "id") long customerOrderId)
+			throws ApplicationException {
+		customerOrderService.deleteCustomerOrder(customerOrderId);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 }

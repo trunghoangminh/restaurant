@@ -31,7 +31,7 @@ public class CustomerOrderRepositoryImpl extends DefaultRepository<CustomerOrder
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<CustomerOrder> getBillOrder(long billId) {
+	public List<CustomerOrder> getBillReport(long billId) {
 		Query query = em.createQuery("SELECT order FROM CustomerOrder order WHERE FKBill=:id", CustomerOrder.class);
 		query.setParameter("id", billId);
 		return query.getResultList();

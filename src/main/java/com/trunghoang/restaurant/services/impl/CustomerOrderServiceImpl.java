@@ -1,5 +1,6 @@
 package com.trunghoang.restaurant.services.impl;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +16,7 @@ import com.trunghoang.restaurant.domains.Menu;
 import com.trunghoang.restaurant.domains.dtos.CustomerOrderDTO;
 import com.trunghoang.restaurant.domains.mapper.DefaultClassMapper;
 import com.trunghoang.restaurant.domains.report.BillOrder;
+import com.trunghoang.restaurant.domains.report.BillReport;
 import com.trunghoang.restaurant.exceptions.ApplicationException;
 import com.trunghoang.restaurant.repositories.BillRepository;
 import com.trunghoang.restaurant.repositories.CustomerOrderRepository;
@@ -63,12 +65,14 @@ public class CustomerOrderServiceImpl extends DefaultService<CustomerOrderDTO, C
 	}
 
 	@Override
-	public List<BillOrder> getBillOrder(long billId) {
+	public BillReport getBillReport(long billId) {
 
-		List<CustomerOrderDTO> customerOrders = convertToDTOs(customerOrderRepository.getBillOrder(billId));
+		List<CustomerOrderDTO> customerOrders = convertToDTOs(customerOrderRepository.getBillReport(billId));
+		BillReport billReport = new BillReport();
 		List<BillOrder> billOrders = new ArrayList<>();
+		BigDecimal grandTotal = BigDecimal.ZERO;
 
-		customerOrders.forEach(order -> {
+		for (CustomerOrderDTO order : customerOrders) {
 			BillOrder billOrder = new BillOrder();
 			billOrder.setId(order.getId());
 			billOrder.setMenu(order.getMenu().getName());
@@ -76,10 +80,14 @@ public class CustomerOrderServiceImpl extends DefaultService<CustomerOrderDTO, C
 			billOrder.setOrderTime(order.getOrderedTime());
 			billOrder.setTotalPrice(order.getSubTotalPrice());
 			billOrder.setPrice(order.getMenu().getPrice());
-			billOrders.add(billOrder);
-		});
 
-		return billOrders;
+			billOrders.add(billOrder);
+			grandTotal = grandTotal.add(order.getSubTotalPrice());
+		}
+
+		billReport.setTotalPrice(grandTotal);
+		billReport.setBillOrders(billOrders);
+		return billReport;
 	}
 
 	@Transactional

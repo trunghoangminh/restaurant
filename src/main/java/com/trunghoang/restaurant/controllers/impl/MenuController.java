@@ -15,6 +15,11 @@ import com.trunghoang.restaurant.controllers.DefaultController;
 import com.trunghoang.restaurant.domains.dtos.MenuDTO;
 import com.trunghoang.restaurant.services.MenuService;
 
+/**
+ * 
+ * Menu controller
+ *
+ */
 @RestController
 @RequestMapping("/v1/menu")
 public class MenuController extends DefaultController<MenuDTO, MenuService> {

@@ -17,8 +17,8 @@ import lombok.Setter;
 @NoArgsConstructor
 public class BillReport {
 
-	private BigDecimal totalPrice;
-
 	private List<BillOrder> billOrders;
+
+	private BigDecimal totalPrice;
 
 }
