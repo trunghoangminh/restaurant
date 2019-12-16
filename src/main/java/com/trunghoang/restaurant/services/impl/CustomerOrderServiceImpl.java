@@ -15,8 +15,8 @@ import com.trunghoang.restaurant.domains.CustomerOrder;
 import com.trunghoang.restaurant.domains.Menu;
 import com.trunghoang.restaurant.domains.dtos.CustomerOrderDTO;
 import com.trunghoang.restaurant.domains.mapper.DefaultClassMapper;
-import com.trunghoang.restaurant.domains.report.OrderInfo;
 import com.trunghoang.restaurant.domains.report.BillReport;
+import com.trunghoang.restaurant.domains.report.OrderInfo;
 import com.trunghoang.restaurant.exceptions.ApplicationException;
 import com.trunghoang.restaurant.repositories.BillRepository;
 import com.trunghoang.restaurant.repositories.CustomerOrderRepository;
@@ -78,7 +78,7 @@ public class CustomerOrderServiceImpl extends DefaultService<CustomerOrderDTO, C
 		}
 		billReport.setId(billId);
 		billReport.setTotalPrice(grandTotal);
-		billReport.setBillOrders(billOrders);
+		billReport.setOrderInfo(billOrders);
 		return billReport;
 	}
 

@@ -47,7 +47,7 @@ public class CustomerOrder implements Serializable, IdEntity {
 	@JoinColumn(name = "FKBill")
 	private Bill bill;
 
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = false)
 	@JoinColumn(name = "FKMenu")
 	private Menu menu;
 

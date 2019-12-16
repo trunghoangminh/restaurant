@@ -11,9 +11,9 @@ import com.trunghoang.restaurant.domains.Bill;
 import com.trunghoang.restaurant.domains.dtos.BillDTO;
 import com.trunghoang.restaurant.domains.dtos.CustomerOrderDTO;
 import com.trunghoang.restaurant.domains.mapper.DefaultClassMapper;
-import com.trunghoang.restaurant.domains.report.OrderInfo;
 import com.trunghoang.restaurant.domains.report.BillReport;
 import com.trunghoang.restaurant.domains.report.BillTotalReport;
+import com.trunghoang.restaurant.domains.report.OrderInfo;
 import com.trunghoang.restaurant.repositories.BillRepository;
 import com.trunghoang.restaurant.services.BillService;
 import com.trunghoang.restaurant.services.DefaultService;
@@ -79,20 +79,20 @@ public class BillServiceImpl extends DefaultService<BillDTO, Bill, BillRepositor
 	 */
 	private BillReport getBillReport(BillDTO billDTO) {
 		BillReport billReport = new BillReport();
-		List<OrderInfo> billOrders = new LinkedList<>();
+		List<OrderInfo> orderInfos = new LinkedList<>();
 
 		for (CustomerOrderDTO customerOrderDTO : billDTO.getCustomerOrders()) {
-			billOrders.add(getOrderInfo(customerOrderDTO));
+			orderInfos.add(getOrderInfo(customerOrderDTO));
 		}
 		billReport.setId(billDTO.getId());
-		billReport.setBillOrders(billOrders);
+		billReport.setOrderInfo(orderInfos);
 		billReport.setTotalPrice(billDTO.getTotalPrice());
 
 		return billReport;
 	}
 
 	/**
-	 * Populate data to BillInfo
+	 * Populate data to order info
 	 * 
 	 * @param dto
 	 * @return

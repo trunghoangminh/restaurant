@@ -19,7 +19,7 @@ public class BillReport {
 
 	private long id;
 
-	private List<OrderInfo> billOrders;
+	private List<OrderInfo> orderInfo;
 
 	private BigDecimal totalPrice;
 

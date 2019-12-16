@@ -14,8 +14,6 @@ public class CustomerOrderDTO implements IdDTO {
 
 	private long id;
 
-	private BillDTO bill;
-
 	private MenuDTO menu;
 
 	private Timestamp orderedTime;

@@ -2,8 +2,6 @@ package com.trunghoang.restaurant.controllers;
 
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,8 +23,6 @@ import com.trunghoang.restaurant.services.IService;
  * @param <SERVICE>
  */
 public abstract class DefaultController<DTO, SERVICE extends IService<DTO>> implements IController<DTO> {
-
-	private Logger log = LoggerFactory.getLogger(DefaultController.class);
 
 	public abstract SERVICE getService();
 
@@ -62,16 +58,5 @@ public abstract class DefaultController<DTO, SERVICE extends IService<DTO>> impl
 	public ResponseEntity<Void> delete(@PathVariable long id) throws ApplicationException {
 		getService().delete(id);
 		return new ResponseEntity<>(HttpStatus.OK);
-	}
-
-	/**
-	 * Log event for controller
-	 * 
-	 * @param message
-	 */
-	public void logEvent(String message) {
-		if (log.isInfoEnabled()) {
-			log.info(message);
-		}
 	}
 }
