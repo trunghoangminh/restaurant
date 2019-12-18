@@ -1,0 +1,27 @@
+version: "3"
+
+services:
+  mysqldb:
+    build: ./db
+    image: mysql
+    container_name: restaurant-db
+    ports:
+      - "3306:3306"
+
+  rest:
+    build: ./app
+    image: restaurant
+    container_name: restaurant-app
+    environment:
+      - APP_MYSQL_DB=restaurant
+      - APP_MYSQL_PORT=3306
+      - APP_MYSQL_USERNAME=admin
+      - APP_MYSQL_PASSWORD=admin
+      - APP_MYSQL_DNS_SERVER=mysqldb
+    ports:
+      - "8080:8080"
+    restart: always
+    depends_on:
+      - mysqldb
+    links:
+      - mysqldb

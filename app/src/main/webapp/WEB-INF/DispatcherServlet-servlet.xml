@@ -39,9 +39,9 @@
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/restaurant" />
-		<property name="username" value="visiondata" />
-		<property name="password" value="2dbadmin$dbadmin" />
+		<property name="url" value="jdbc:mysql://${APP_MYSQL_DNS_SERVER}:${APP_MYSQL_PORT}/${APP_MYSQL_DB}" />
+		<property name="username" value="${APP_MYSQL_USERNAME}" />
+		<property name="password" value="${APP_MYSQL_PASSWORD}" />
 	</bean>
 
 </beans>
