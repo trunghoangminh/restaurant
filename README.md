@@ -9,3 +9,5 @@
 3. Start server
 - `cd $ROOT`
 - `docker-compose up`
+
+Access http://localhost:8080/restaurant/swagger-ui.html#/ to test REST api
