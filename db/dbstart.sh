@@ -9,4 +9,5 @@ mysql -u root -e "set password for 'admin'@'localhost' = PASSWORD('admin');"
 mysql -u root -e "set password for 'admin'@'%' = PASSWORD('admin');"
 mysql -u root -e "create database restaurant;"
 
+# wating forever
 tail -F -n0 /etc/hosts
