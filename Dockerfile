@@ -2,7 +2,6 @@ FROM tomcat:8.5
 
 ENV http_proxy=http://10.10.10.10:8080/
 ENV https_proxy=https://10.10.10.10:8080/
-RUN apt-get update && apt-get install -y mysql-server
 
 COPY ./target/restaurant-0.0.1-SNAPSHOT.war $CATALINA_HOME/webapps/restaurant.war 
 

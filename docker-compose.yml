@@ -2,14 +2,19 @@ version: "3"
 
 services:
   mysqldb:
-    build: ./db
-    image: mysql
-    container_name: restaurant-db
-    ports:
-      - "3306:3306"
+        image: mariadb:10.2
+        container_name: restaurant-db
+        restart: always
+        environment:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: restaurant
+          MYSQL_PASSWORD: admin
+          MYSQL_USER: admin
+        ports:
+          - "3306:3306"
 
   rest:
-    build: ./app
+    build: .
     image: restaurant
     container_name: restaurant-app
     environment:
