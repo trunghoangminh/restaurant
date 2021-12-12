@@ -1,8 +1,8 @@
 package com.trunghoang.restaurant.services;
 
-import java.util.List;
-
 import com.trunghoang.restaurant.exceptions.ApplicationException;
+
+import java.util.List;
 
 /**
  * 
@@ -16,9 +16,9 @@ public interface IService<DTO> {
 
 	public DTO findById(long id);
 
-	public void add(DTO dto);
+	public DTO add(DTO dto);
 
-	public void update(DTO dto) throws ApplicationException;
+	public DTO update(DTO dto) throws ApplicationException;
 
 	public void delete(long id) throws ApplicationException;
 }

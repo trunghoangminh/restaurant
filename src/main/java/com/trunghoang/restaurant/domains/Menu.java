@@ -52,6 +52,7 @@ public class Menu implements Serializable, IdEntity {
 	@Column(name = DESCRIPTION)
 	private String description;
 
+
 	@Column(name = IMAGE_URL)
 	private String imageURL;
 
@@ -100,6 +101,7 @@ public class Menu implements Serializable, IdEntity {
 		builder.append(", imageURL=");
 		builder.append(", price=");
 		builder.append(price);
+
 		builder.append(", additionalDetails=");
 		builder.append(additionalDetails);
 		return builder.toString();

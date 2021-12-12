@@ -1,13 +1,15 @@
 package com.trunghoang.restaurant.repositories;
 
+import com.trunghoang.restaurant.domains.CustomerOrder;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
 import java.util.List;
 
-import com.trunghoang.restaurant.domains.CustomerOrder;
-import com.trunghoang.restaurant.exceptions.ApplicationException;
+public interface CustomerOrderRepository extends JpaRepository<CustomerOrder, Long> {
 
-public interface CustomerOrderRepository extends IRepository<CustomerOrder> {
-
+	@Query("SELECT order FROM CustomerOrder order WHERE FKBill=?1")
 	public List<CustomerOrder> getBillReport(long billId);
 
-	public void deleteById(long id) throws ApplicationException;
+	public void deleteById(long id);
 }

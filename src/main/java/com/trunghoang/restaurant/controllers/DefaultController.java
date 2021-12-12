@@ -1,7 +1,7 @@
 package com.trunghoang.restaurant.controllers;
 
-import java.util.List;
-
+import com.trunghoang.restaurant.exceptions.ApplicationException;
+import com.trunghoang.restaurant.services.IService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -12,8 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.trunghoang.restaurant.exceptions.ApplicationException;
-import com.trunghoang.restaurant.services.IService;
+import java.util.List;
 
 /**
  * 
@@ -41,16 +40,14 @@ public abstract class DefaultController<DTO, SERVICE extends IService<DTO>> impl
 
 	@PostMapping(value = "/")
 	@Override
-	public ResponseEntity<Void> add(@RequestBody DTO dto) {
-		getService().add(dto);
-		return new ResponseEntity<>(HttpStatus.OK);
+	public ResponseEntity<DTO> add(@RequestBody DTO dto) {
+		return new ResponseEntity<>(getService().add(dto),HttpStatus.OK);
 	}
 
 	@PutMapping(value = "/")
 	@Override
-	public ResponseEntity<Void> update(@RequestBody DTO dto) throws ApplicationException {
-		getService().update(dto);
-		return new ResponseEntity<>(HttpStatus.OK);
+	public ResponseEntity<DTO> update(@RequestBody DTO dto) throws ApplicationException {
+		return new ResponseEntity<>(getService().update(dto),HttpStatus.OK);
 	}
 
 	@DeleteMapping(value = "/{id}")

@@ -1,12 +1,11 @@
 package com.trunghoang.restaurant.controllers;
 
-import java.util.List;
-
+import com.trunghoang.restaurant.exceptions.ApplicationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import com.trunghoang.restaurant.exceptions.ApplicationException;
+import java.util.List;
 
 /**
  * 
@@ -20,9 +19,9 @@ public interface IController<DTO> {
 
 	public ResponseEntity<DTO> findById(@PathVariable long id);
 
-	public ResponseEntity<Void> add(@RequestBody DTO dto);
+	public ResponseEntity<DTO> add(@RequestBody DTO dto);
 
-	public ResponseEntity<Void> update(@RequestBody DTO dto) throws ApplicationException;
+	public ResponseEntity<DTO> update(@RequestBody DTO dto) throws ApplicationException;
 
 	public ResponseEntity<Void> delete(@PathVariable long id) throws ApplicationException;
 }

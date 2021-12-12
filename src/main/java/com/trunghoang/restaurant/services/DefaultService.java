@@ -1,55 +1,63 @@
 package com.trunghoang.restaurant.services;
 
-import java.util.List;
-
+import com.trunghoang.restaurant.exceptions.ApplicationException;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.trunghoang.restaurant.exceptions.ApplicationException;
-import com.trunghoang.restaurant.repositories.IRepository;
+import java.util.List;
+import java.util.Optional;
 
 /**
- * 
  * Default service
  *
  * @param <DTO>
  * @param <ENTITY>
  * @param <REPOSITORY>
  */
-public abstract class DefaultService<DTO, ENTITY, REPOSITORY extends IRepository<ENTITY>> implements IService<DTO> {
+public abstract class DefaultService<DTO, ENTITY, REPOSITORY extends JpaRepository<ENTITY, Long>> implements IService<DTO> {
 
-	@Override
-	public List<DTO> findAll(int pageNumber, int numberOfRecord) {
-		return convertToDTOs(getRepository().getAll(pageNumber, numberOfRecord));
-	}
+    @Override
+    public List<DTO> findAll(int pageNumber, int numberOfRecord) {
+        Pageable pageable = PageRequest.of(pageNumber, numberOfRecord);
+        return convertToDTOs(getRepository().findAll(pageable).getContent());
+    }
 
-	@Override
-	public DTO findById(long id) {
-		return convertToDTO(getRepository().findById(id));
-	}
+    @Override
+    public DTO findById(long id) {
+        Optional<ENTITY> entity = getRepository().findById(id);
+        if (entity.isPresent()) {
+            return convertToDTO(entity.get());
+        }
+        return null;
+    }
 
-	@Override
-	@Transactional
-	public void add(DTO dto) {
-		getRepository().add(convertToEntity(dto));
-	}
+    @Override
+    @Transactional
+    public DTO add(DTO dto) {
+        ENTITY entity = getRepository().save(convertToEntity(dto));
+        return convertToDTO(entity);
+    }
 
-	@Override
-	@Transactional
-	public void update(DTO dto) throws ApplicationException {
-		getRepository().update(convertToEntity(dto));
-	}
+    @Override
+    @Transactional
+    public DTO update(DTO dto) throws ApplicationException {
+        ENTITY entity = getRepository().save(convertToEntity(dto));
+        return convertToDTO(entity);
+    }
 
-	@Override
-	@Transactional
-	public void delete(long id) throws ApplicationException {
-		getRepository().delete(id);
-	}
+    @Override
+    @Transactional
+    public void delete(long id) throws ApplicationException {
+        getRepository().deleteById(id);
+    }
 
-	public abstract REPOSITORY getRepository();
+    public abstract REPOSITORY getRepository();
 
-	public abstract DTO convertToDTO(ENTITY entity);
+    public abstract DTO convertToDTO(ENTITY entity);
 
-	public abstract ENTITY convertToEntity(DTO dto);
+    public abstract ENTITY convertToEntity(DTO dto);
 
-	public abstract List<DTO> convertToDTOs(List<ENTITY> entities);
+    public abstract List<DTO> convertToDTOs(List<ENTITY> entities);
 }

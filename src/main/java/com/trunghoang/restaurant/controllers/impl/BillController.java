@@ -1,7 +1,13 @@
 package com.trunghoang.restaurant.controllers.impl;
 
-import java.sql.Timestamp;
-
+import com.trunghoang.restaurant.controllers.DefaultController;
+import com.trunghoang.restaurant.domains.dtos.BillDTO;
+import com.trunghoang.restaurant.domains.report.BillReport;
+import com.trunghoang.restaurant.domains.report.BillTotalReport;
+import com.trunghoang.restaurant.domains.report.Customer;
+import com.trunghoang.restaurant.exceptions.ApplicationException;
+import com.trunghoang.restaurant.services.BillService;
+import com.trunghoang.restaurant.services.CustomerOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,14 +20,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.trunghoang.restaurant.controllers.DefaultController;
-import com.trunghoang.restaurant.domains.dtos.BillDTO;
-import com.trunghoang.restaurant.domains.report.BillReport;
-import com.trunghoang.restaurant.domains.report.BillTotalReport;
-import com.trunghoang.restaurant.domains.report.Customer;
-import com.trunghoang.restaurant.exceptions.ApplicationException;
-import com.trunghoang.restaurant.services.BillService;
-import com.trunghoang.restaurant.services.CustomerOrderService;
+import java.sql.Timestamp;
 
 /**
  * 
@@ -54,7 +53,7 @@ public class BillController extends DefaultController<BillDTO, BillService> {
 	 * @return
 	 */
 	@PostMapping(value = "/create")
-	public ResponseEntity<Void> createBill() {
+	public ResponseEntity<BillDTO> createBill() {
 		BillDTO billDTO = new BillDTO();
 		billDTO.setDate(new Timestamp(System.currentTimeMillis()));
 		return add(billDTO);
